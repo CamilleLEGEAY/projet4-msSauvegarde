@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,9 +42,9 @@ public class RechercheController {
 		rechercheEntity=rechercheReceived.getRecherche();
 		
 		//ligne pour les test sans token crypte
-		//String subject = rechercheReceived.getToken();
+		String subject = rechercheReceived.getToken();
 		//ligne a utiliser si token entrant a le bon cryptage
-		String subject = jwtUtil.getUsernameFromToken(rechercheReceived.getToken());
+		//String subject = jwtUtil.getUsernameFromToken(rechercheReceived.getToken());
 		
 		Optional<User> rep = userRepository.findByTokenUserName(subject);
 		if(rep.isPresent()) {
@@ -65,7 +64,7 @@ public class RechercheController {
 		return "Recherche Sauvegardée";
 	}
 	
-	@PostMapping(path="/public/find")  
+	@PostMapping(path="/private/find")  
 	public List<Recherche> findAllResearches(@RequestBody String token) {	
 		List<Recherche> recherches = new ArrayList<Recherche>();
 		String subject = jwtUtil.getUsernameFromToken(token);
