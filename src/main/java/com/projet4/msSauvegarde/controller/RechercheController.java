@@ -19,7 +19,7 @@ import com.projet4.msSauvegarde.modele.RechercheReceived;
 import com.projet4.msSauvegarde.modele.User;
 import com.projet4.msSauvegarde.security.JwtUtilService;
 
-@CrossOrigin("${ORIGINE}")
+@CrossOrigin(origins ="${ORIGINE}")
 @RestController
 @RequestMapping(path = "/msSauvegarde")
 public class RechercheController {
