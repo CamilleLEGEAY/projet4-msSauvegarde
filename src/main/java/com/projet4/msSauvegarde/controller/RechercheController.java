@@ -19,7 +19,7 @@ import com.projet4.msSauvegarde.modele.RechercheReceived;
 import com.projet4.msSauvegarde.modele.User;
 import com.projet4.msSauvegarde.security.JwtUtilService;
 
-@CrossOrigin("*")
+@CrossOrigin("${ORIGINE}")
 @RestController
 @RequestMapping(path = "/msSauvegarde")
 public class RechercheController {
@@ -42,9 +42,9 @@ public class RechercheController {
 		rechercheEntity=rechercheReceived.getRecherche();
 		
 		//ligne pour les test sans token crypte
-		String subject = rechercheReceived.getToken();
+		//String subject = rechercheReceived.getToken();
 		//ligne a utiliser si token entrant a le bon cryptage
-		//String subject = jwtUtil.getUsernameFromToken(rechercheReceived.getToken());
+		String subject = jwtUtil.getUsernameFromToken(rechercheReceived.getToken());
 		
 		Optional<User> rep = userRepository.findByTokenUserName(subject);
 		if(rep.isPresent()) {
