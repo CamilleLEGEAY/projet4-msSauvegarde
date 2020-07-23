@@ -64,7 +64,7 @@ public class RechercheController {
 		return "Recherche Sauvegardée";
 	}
 	
-	@PostMapping(path="/private/find")  
+	@PostMapping(path="/public/find")  
 	public List<Recherche> findAllResearches(@RequestBody String token) {	
 		List<Recherche> recherches = new ArrayList<Recherche>();
 		String subject = jwtUtil.getUsernameFromToken(token);
